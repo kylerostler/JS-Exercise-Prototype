@@ -103,6 +103,14 @@ Car.prototype.fill = function(gallons){
   this.tank = this.tank + gallons; 
 }
 
+Car.prototype.drive = function(distance){
+  this.odometer = this.odometer + distance;
+  this.tank = this.tank - distance;
+  if(this.tank <= 0){
+    return `I ran out of fuel at ${this.odometer} miles!`
+  }
+}
+
 // const kia = new Car('kia', 30);
 // kia.fill(1);
 // console.log(kia.tank);
@@ -124,13 +132,16 @@ Baby.prototype.play = function(favoriteToy){
   return `Playing with ${this.favoriteToy}`;
 };
 
+const Scarlet = new Baby('Scarlet', 1, 'Phone');
+console.log(Scarlet.play());
+
 /* 
   TASK 4
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. window binding is when no other rules apply it defaults to the entire global scope/ window which is viewed as an error
+  2. implicit binding is when it applies to the left of the dot for objects with methods
+  3. explicit binding is when we tell this what to bind to with .call .apply or .bind ie using .call to inherit things
+  4. new binding is when you invoke a function and this points to the newly created object
 */
 
 

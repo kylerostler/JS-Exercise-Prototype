@@ -59,24 +59,25 @@ Person.prototype.toString = function(){
   return `${this.name}, ${this.age}`;
 }
 
-const kyler = new Person('Kyler', 25);
-const ben = new Person('Bennett', 29);
+// const kyler = new Person('Kyler', 25);
+// const ben = new Person('Bennett', 29);
 
-console.log(kyler.toString());
-console.log(ben.toString());
+// console.log(kyler.toString());
+// console.log(ben.toString());
 
-ben.eat('pizza');
-ben.eat('tacos');
-ben.eat('sushi');
-ben.eat('ramen');
-ben.eat('sandwich');
-ben.eat('cake');
+// ben.eat('pizza');
+// ben.eat('tacos');
+// ben.eat('sushi');
+// ben.eat('ramen');
+// ben.eat('sandwich');
+// ben.eat('cake');
 
-console.log(ben.stomach);
+// console.log(ben.stomach);
 
-ben.poop();
+// ben.poop();
 
-console.log(ben.stomach);
+// console.log(ben.stomach);
+
 /*
   TASK 2
     - Write a Car constructor that initializes `model` and `milesPerGallon` from arguments.
@@ -91,10 +92,20 @@ console.log(ben.stomach);
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-function Car() {
-  
+function Car(model, milesPerGallon) {
+  this.model = model;
+  this.milesPerGallon = milesPerGallon;
+  this.tank = 0;
+  this.odometer = 0;
 }
 
+Car.prototype.fill = function(gallons){
+  this.tank = this.tank + gallons; 
+}
+
+// const kia = new Car('kia', 30);
+// kia.fill(1);
+// console.log(kia.tank);
 
 /*
   TASK 3
@@ -103,10 +114,15 @@ function Car() {
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
- 
+function Baby(name, age, favoriteToy) {
+ Person.call(this, name, age);
+ this.favoriteToy = favoriteToy;
 }
 
+Baby.prototype = Object.create(Person.prototype);
+Baby.prototype.play = function(favoriteToy){
+  return `Playing with ${this.favoriteToy}`;
+};
 
 /* 
   TASK 4
